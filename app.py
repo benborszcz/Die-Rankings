@@ -3,6 +3,8 @@ import firebase_admin
 from firebase_admin import credentials, firestore
 from tracking import Tracking
 from game import Game
+from datetime import datetime
+from scheduling import generate_schedule_for_players
 
 tracking = Tracking()
 
@@ -21,7 +23,8 @@ def save_game_data_to_firebase(team1_player1, team1_player2, team2_player1, team
         'team2_player1': team2_player1,
         'team2_player2': team2_player2,
         'team1_score' : team1_score,
-        'team2_score' : team2_score
+        'team2_score' : team2_score,
+        'timestamp': datetime.now()
     }
     db.collection('games').add(game_data)
 
@@ -128,6 +131,40 @@ def enter_game():
     else:
         players = fetch_individual_rankings_from_tracking()  # Replace with your function to get the list of players
         return render_template('enter_game.html', players=players)
+
+
+@app.route('/generate_schedule', methods=['GET', 'POST'])
+def generate_schedule():
+    if len(tracking.players) == 0:
+        game_history = fetch_game_history_from_firebase()
+        tracking.load_data(game_history)
+
+    if request.method == 'POST':
+        # Process submitted schedule data
+
+        number_of_games = int(request.form['number_of_games'])
+        selected_players = request.form.getlist('players[]')
+
+        players = []
+        for selected_player in selected_players:
+            players.append(tracking.get_player(selected_player))
+
+
+        # Generate the schedule using the selected players and number of games
+        # Example:
+        schedule = generate_schedule_for_players(players, number_of_games)
+
+        # Save the generated schedule to Firebase (if needed)
+        # Example:
+        # save_schedule_to_firebase(schedule)
+
+        # Redirect to a new page to display the generated schedule or pass it to the template
+        # Example:
+        return render_template('display_schedule.html', schedule=schedule)
+
+    else:
+        players = fetch_individual_rankings_from_tracking()  # Replace with your function to get the list of players
+        return render_template('generate_schedule.html', players=players)
     
 
 
@@ -153,7 +190,7 @@ def team_rankings():
 
     teams = fetch_team_rankings_from_tracking()
 
-    teams = sorted(teams, key=lambda x: x.wins, reverse=True)
+    teams = sorted(teams, key=lambda x: x.elo, reverse=True)
 
     return render_template('team_rankings.html', teams=teams)
 

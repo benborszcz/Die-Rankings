@@ -17,6 +17,7 @@
                     <th scope="col">Wins</th>
                     <th scope="col">Games</th>
                     <th scope="col">Win Rate</th>
+                    <th scope="col">Rating</th>
                 </tr>
             </thead>
             <tbody>
@@ -26,6 +27,7 @@
                     <td>{{ team.wins }}</td>
                     <td>{{ team.games }}</td>
                     <td>{{ team.win_percentage }}%</td>
+                    <td>{{ '%.2f' | format(team.elo) }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
