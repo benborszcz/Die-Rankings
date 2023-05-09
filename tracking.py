@@ -22,7 +22,6 @@ class Tracking:
             team1 = self.get_team(self.get_player(game['team1_player1']), self.get_player(game['team1_player2']))
             team2 = self.get_team(self.get_player(game['team2_player1']), self.get_player(game['team2_player2']))
             game = Game(team1, team2, [int(game['team1_score']), int(game['team2_score'])])
-            print(game)
             self.update_data(game)
 
     def save_data(self):
@@ -57,7 +56,7 @@ class Tracking:
         team_elo_difference = loser.elo - winner.elo
 
         # Set the base win reward
-        win_reward = 8
+        win_reward = 10
 
         # Set multipliers
         rating_diff_multiplier = 0.05
