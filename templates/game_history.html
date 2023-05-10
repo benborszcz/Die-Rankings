@@ -10,6 +10,17 @@
 <body>
     <div class="container">
         <h1 class="text-center my-5">Game History</h1>
+        <form action="{{ url_for('game_history') }}" method="get">
+            <div class="input-group">
+                <select name="player_filter" id="player_filter" class="form-select">
+                    <option value="">All Players</option>
+                    {% for player in players %}
+                    <option value="{{ player.name }}" {% if player_filter==player.name %}selected{% endif %}>{{ player.name }}</option>
+                    {% endfor %}
+                </select>
+                <button type="submit" class="btn btn-primary">Filter</button>
+            </div>
+        </form>
         <table class="table table-striped">
             <thead>
                 <tr>
