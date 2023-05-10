@@ -5,6 +5,7 @@ class Player:
         self.games = 0
         self.wins = 0
         self.win_percentage = 0.0
+        self.penalty = 0.0
 
     def add_game(self):
         self.games += 1
@@ -19,6 +20,9 @@ class Player:
 
     def update_elo(self, delta):
         self.elo += delta
+
+    def get_elo(self):
+        return self.elo - self.penalty
 
     def __str__(self):
         return f"{self.name}: {self.elo}"

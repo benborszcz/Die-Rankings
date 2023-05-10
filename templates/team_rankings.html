@@ -27,7 +27,7 @@
                     <td>{{ team.wins }}</td>
                     <td>{{ team.games }}</td>
                     <td>{{ team.win_percentage }}%</td>
-                    <td>{{ '%.2f' | format(team.elo) }}</td>
+                    <td>{% if team.get_elo() != 0 %}{{ '%.2f' | format(team.get_elo()) }}{% else %}N/A{% endif %}</td>
                 </tr>
                 {% endfor %}
             </tbody>
