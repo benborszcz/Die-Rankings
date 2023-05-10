@@ -198,6 +198,10 @@ def team_rankings():
 
 @app.route('/game_history', methods=['GET', 'POST'])
 def game_history():
+
+    game_history = fetch_game_history_from_firebase()
+    tracking.load_data(game_history)
+
     est_tz = pytz.timezone('US/Eastern')
 
     # Fetch the players for the filter dropdown
