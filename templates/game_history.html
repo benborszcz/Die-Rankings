@@ -10,10 +10,21 @@
 <body>
     <div class="container">
         <h1 class="text-center my-5">Game History</h1>
+        <form action="{{ url_for('game_history') }}" method="get">
+            <div class="input-group">
+                <select name="player_filter" id="player_filter" class="form-select">
+                    <option value="">All Players</option>
+                    {% for player in players %}
+                    <option value="{{ player.name }}" {% if player_filter==player.name %}selected{% endif %}>{{ player.name }}</option>
+                    {% endfor %}
+                </select>
+                <button type="submit" class="btn btn-primary">Filter</button>
+            </div>
+        </form>
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th scope="col">TimeStamp</th>
+                    <th scope="col">Date (EST)</th>
                     <th scope="col">Team 1</th>
                     <th scope="col">Score</th>
                     <th scope="col">Team 2</th>
@@ -23,13 +34,11 @@
             <tbody>
                 {% for game in games|sort(attribute='timestamp', reverse=True) %}
                 <tr>
-                    <td>{{ game.timestamp.strftime('%Y-%m-%d %H:%M') }}</td>
-                    <td>{{ game.team1_player1 }} &amp; {{ game.team1_player2 }}</td>
-                    <td>{{ game.team1_score }} - {{ game.team2_score }}</td>
-                    <td>{{ game.team2_player1 }} &amp; {{ game.team2_player2 }}</td>
+                    <td style="font-size: 0.9em; ">{{ game.est_timestamp.strftime('%m-%d') }}</td>
+                    <td style="font-size: 0.9em; {{ 'color: green;' if game.score[0] > game.score[1] else 'color: red;' }}">({{'%.0f' | format(game.team1.player1.elo)}})<br>{{ game.team1.player1.name }}<br>[{{'%.0f' | format(game.team1.elo)}}]<br>{{ game.team1.player2.name }}<br>({{'%.0f' | format(game.team1.player2.elo)}})</td>
+                    <td style="font-size: 0.9em; ">{{ game.score[0] }} - {{ game.score[1] }}</td>
+                    <td style="font-size: 0.9em; {{ 'color: green;' if game.score[1] > game.score[0] else 'color: red;' }}">({{'%.0f' | format(game.team2.player1.elo)}})<br>{{ game.team2.player1.name }}<br>[{{'%.0f' | format(game.team2.elo)}}]<br>{{ game.team2.player2.name }}<br>({{'%.0f' | format(game.team2.player2.elo)}})</td>
                     <td>
-                        <!-- <a href="{{ url_for('edit_game', game_id=game.id) }}" class="btn btn-warning btn-sm">Edit</a>-->
-
                         <form id="delete_game_form_{{ game.id }}" action="{{ url_for('delete_game', game_id=game.id) }}" method="post" style="display: none;">
                             <input type="password" name="password" id="delete_game_password_{{ game.id }}" value="">
                         </form>

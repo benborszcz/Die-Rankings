@@ -15,7 +15,7 @@
                 <tr>
                     <th scope="col">Name</th>
                     <th scope="col">Wins</th>
-                    <th scope="col">Games</th>
+                    <th scope="col">Losses</th>
                     <th scope="col">Win %</th>
                     <th scope="col">Rating</th>
                 </tr>
@@ -25,9 +25,9 @@
                 <tr>
                     <td>{{ player.name }}</td>
                     <td>{{ player.wins }}</td>
-                    <td>{{ player.games }}</td>
+                    <td>{{ player.games-player.wins }}</td>
                     <td>{{ player.win_percentage }}</td>
-                    <td>{{ '%.2f' | format(player.elo) }}</td>
+                    <td>{% if player.get_elo() != 0 %}{{ '%.2f' | format(player.get_elo()) }}{% else %}N/A{% endif %}</td>
                 </tr>
                 {% endfor %}
             </tbody>

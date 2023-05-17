@@ -7,7 +7,8 @@ class Team:
         self.wins = wins
         self.games = games
         self.win_percentage = 0.0
-        self.elo = 1000
+        self.elo = 1000.0
+        self.penalty = 0.0
 
     def add_win(self):
         self.wins += 1
@@ -26,6 +27,9 @@ class Team:
 
     def update_elo(self, delta):
         self.elo += delta
+
+    def get_elo(self):
+        return self.elo - self.penalty
 
     def __str__(self):
         return f"{self.player1.name}-{self.player2.name}: {self.wins} wins, {self.games} games, {self.win_percentage()}% win rate"

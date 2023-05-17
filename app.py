@@ -5,6 +5,7 @@ from tracking import Tracking
 from game import Game
 from datetime import datetime
 from scheduling import generate_schedule_for_players
+import pytz
 
 tracking = Tracking()
 
@@ -177,7 +178,7 @@ def individual_rankings():
    
     players = fetch_individual_rankings_from_tracking()
 
-    players = sorted(players, key=lambda x: x.elo, reverse=True)
+    players = sorted(players, key=lambda x: x.get_elo(), reverse=True)
 
     return render_template('individual_rankings.html', players=players)
 
@@ -190,16 +191,40 @@ def team_rankings():
 
     teams = fetch_team_rankings_from_tracking()
 
-    teams = sorted(teams, key=lambda x: x.elo, reverse=True)
+    teams = sorted(teams, key=lambda x: x.get_elo(), reverse=True)
 
     return render_template('team_rankings.html', teams=teams)
 
 
-@app.route('/game_history')
+@app.route('/game_history', methods=['GET', 'POST'])
 def game_history():
-    games = fetch_game_history_from_firebase()
-    print(games)
-    return render_template('game_history.html', games=games)
+
+    game_history = fetch_game_history_from_firebase()
+    tracking.load_data(game_history)
+
+    est_tz = pytz.timezone('US/Eastern')
+
+    # Fetch the players for the filter dropdown
+    players = fetch_individual_rankings_from_tracking()
+
+    # Get the selected player from the request
+    player_filter = request.args.get('player_filter', '')
+
+    game_history = fetch_game_history_from_firebase()
+    games = []
+    for game in game_history:
+        team1 = tracking.get_team(tracking.get_player(game['team1_player1']), tracking.get_player(game['team1_player2']))
+        team2 = tracking.get_team(tracking.get_player(game['team2_player1']), tracking.get_player(game['team2_player2']))
+        game = Game(team1, team2, [int(game['team1_score']), int(game['team2_score'])], game['timestamp'])
+
+        # Apply filter based on the selected player
+        if not player_filter or player_filter in [game.team1.player1.name, game.team1.player2.name, game.team2.player1.name, game.team2.player2.name]:
+            games.append(game)
+
+    for game in games:
+        game.est_timestamp = game.timestamp.astimezone(est_tz)
+
+    return render_template('game_history.html', games=games, players=players, player_filter=player_filter)
 
 
 @app.route('/edit_game/<game_id>', methods=['GET', 'POST'])
