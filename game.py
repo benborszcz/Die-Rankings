@@ -1,7 +1,8 @@
 from team import Team
 
 class Game:
-    def __init__(self, team1: Team, team2: Team, score: list, timestamp):
+    def __init__(self, id, team1: Team, team2: Team, score: list, timestamp):
+        self.id = id
         self.team1 = team1
         self.team2 = team2
         self.score = score
