@@ -121,12 +121,8 @@ def enter_game():
         # Example:
         save_game_data_to_firebase(team1_player1, team1_player2, team2_player1, team2_player2, team1_score, team2_score)
 
-        team1 = tracking.get_team(tracking.get_player(team1_player1), tracking.get_player(team1_player2))
-        team2 = tracking.get_team(tracking.get_player(team2_player1), tracking.get_player(team2_player2))
-
-        game = Game(team1, team2, [int(team1_score), int(team2_score)])
-
-        tracking.update_data(game)
+        game_history = fetch_game_history_from_firebase()
+        tracking.load_data(game_history)
 
         return redirect(url_for('home'))
     else:
@@ -215,7 +211,7 @@ def game_history():
     for game in game_history:
         team1 = tracking.get_team(tracking.get_player(game['team1_player1']), tracking.get_player(game['team1_player2']))
         team2 = tracking.get_team(tracking.get_player(game['team2_player1']), tracking.get_player(game['team2_player2']))
-        game = Game(team1, team2, [int(game['team1_score']), int(game['team2_score'])], game['timestamp'])
+        game = Game(game['id'], team1, team2, [int(game['team1_score']), int(game['team2_score'])], game['timestamp'])
 
         # Apply filter based on the selected player
         if not player_filter or player_filter in [game.team1.player1.name, game.team1.player2.name, game.team2.player1.name, game.team2.player2.name]:

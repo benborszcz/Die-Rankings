@@ -24,7 +24,7 @@ class Tracking:
         for game in game_history:
             team1 = self.get_team(self.get_player(game['team1_player1']), self.get_player(game['team1_player2']))
             team2 = self.get_team(self.get_player(game['team2_player1']), self.get_player(game['team2_player2']))
-            game = Game(team1, team2, [int(game['team1_score']), int(game['team2_score'])], game['timestamp'])
+            game = Game(game['id'], team1, team2, [int(game['team1_score']), int(game['team2_score'])], game['timestamp'])
             games.append(game)
             self.update_data(game)
 
