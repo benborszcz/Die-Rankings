@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Cave's Die Rankings</title>
+    <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
@@ -53,6 +54,15 @@
                         <h5 class="card-title">Generate Schedule</h5>
                         <p class="card-text">Input players and number of games to have a schedule generated.</p>
                         <a href="{{ url_for('generate_schedule') }}" class="btn btn-primary">Create Schedule</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Da Rules</h5>
+                        <p class="card-text">View the Cave's Beer Die Rules</p>
+                        <a href="{{ url_for('da_rules') }}" class="btn btn-primary">View Rules</a>
                     </div>
                 </div>
             </div>

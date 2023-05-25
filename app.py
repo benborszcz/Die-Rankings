@@ -259,7 +259,9 @@ def delete_game(game_id):
         return "Invalid password", 403
 
 
-
+@app.route('/da_rules')
+def da_rules():
+    return render_template('da_rules.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

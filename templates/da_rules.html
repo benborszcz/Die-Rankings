@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beer Die Rules</title>
+    <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center my-5">The Cave's Beer Die Rules</h1>
+
+        <h2>1. Game Set-Up Requirements</h2>
+        <p>The game setup shall meet the following specifications:</p>
+        <ol>
+            <li>The playing table shall be made of plywood, measuring 4' by 8', with a height of approximately 40" from the ground.</li>
+            <li>A dividing line shall extend vertically through the center of the playing table.</li>
+            <li>Four pint-sized cups shall be placed at each corner of the table, positioned at a distance equivalent to the length of a finger or hand.</li>
+            <li>Two dice shall be used for gameplay.</li>
+            <li>The game shall require four players in total.</li>
+            <li>Players shall jointly decide on a beer of their choice.</li>
+            <li>At the beginning of the game, each player shall fill their respective cup with half or a full beer.</li>
+            <li>A designated height boundary shall be established unanimously, dictating the minimum height for die tosses during gameplay.</li>
+        </ol>
+
+        <h2>2. Determination of First Toss</h2>
+        <p>To determine which team shall initiate the game by tossing first, one player shall roll a die, while the members of the opposing team call either "high" or "low" or "even" or "odd." Should the opposing team's call match the result of the die roll, they shall be awarded the privilege of the first toss.</p>
+
+        <h2>3. Objective and Winning Criteria</h2>
+        <p>Games shall be played until one team scores 11 points, with the requirement that the winning team surpass their opponents by a margin of at least 2 points. Under no circumstances may a game be won on a FIFA play.</p>
+
+        <h2>4. Scoring Points</h2>
+        <p>To score a point, a player must toss the die such that it reaches the established minimum height and bounces off any part of the opponents' half of the playing table. If the die falls to the ground without being caught by a defensive player after its bounce, one point shall be awarded. Players are prohibited from tossing simultaneously; only one player per team may toss at a given time.</p>
+
+        <p>Any die that bounces on the defensive half of the table and falls to the ground without being caught shall result in a point for the offensive team. In order to prevent a point from being scored, a defensive player must catch the die with a single hand prior to it hitting the ground. The use of two hands in a "bobble" situation is permissible, provided that the final catch is clearly made with one hand.</p>
+
+        <p>Upon completion of an offensive player's toss and ensuing catch or drop by the defensive team, the next offensive player shall proceed with their toss. If the tossed die is deemed to be below the minimum height requirement, any player on the defensive team may call a height violation, which is generally considered to be an obvious judgment.</p>
+
+        <p>In the event that the die lands on the offensive half of the playing table or on the dividing line, it shall be declared dead and possession shall be granted to the opposing team. Should disputes arise regarding the landing position of a die, a re-toss shall be conducted.</p>
+
+        <p>Players are prohibited from trapping the die, i.e., restricting its movement by applying pressure with a hand or another body part against their body or any other surrounding object. If a player is found to have trapped the die, the play shall be deemed invalid and one point shall be awarded to the opposing team.</p>
+
+        <p>Defensive players may only catch a die over the table if it has either hit the offensive side and is deemed dead or if it has hit the defensive side, subsequently falls off the table, and is popped back over the table without touching the table through the bobble action. If a die falls from the table, is bobbled, and makes contact with any part of the table again, the point shall be awarded to the offensive team.</p>
+
+        <h2>5. Tinks, Sinks, and Field Goals</h2>
+        <p>A tink occurs when a tossed die makes contact with the defensive team's cup, subsequently falling off the table without being caught. This shall result in the awarding of two points for the offensive team. No points shall be awarded for a die that tinks off the offensive team's cup.</p>
+
+        <p>
+            A sink transpires when a tossed die lands within the defensive team's cup. In such an instance, three points shall be awarded to the offensive team, and the defensive team must empty and refill their affected cup, regardless of the current score. The defensive team must subsequently achieve an additional three or four points before they are required to empty and refill their cups once again. A sink may result from a direct shot into the cup, a bounce into the cup, or an attempted FIFA play by the defense that results in the die landing in their own cup.
+
+        <p>A field goal occurs when a tossed die lands on the defensive side of the table and bounces back through the offensive side's cups without being caught. This play shall result in the awarding of two points for the offensive team. If the die makes contact with the defensive team's cup and bounces back through the offensive side's cups without being caught, three points shall be awarded to the offense.</p>
+
+        <h2>6. FIFA Plays</h2>
+        <p>A successfully executed FIFA play shall either result in one point being awarded to the defensive team or one point being deducted from the offensive team's score, at the discretion of the defensive team. It is not possible to win a game in conjunction with a FIFA play.</p>
+
+        <p>In the case of a completed FIFA play, the following outcomes shall transpire:</p>
+
+        <p>If the die is FIFA'd (i.e., kicked) and caught by a defensive player, one point shall be awarded to their team to appropriate as they see fit.</p>
+        <p>The die must be FIFA'd a minimum of n+1 times, where n denotes the number of FIFA plays previously executed during the game.</p>
+        <p>FIFA plays shall involve only the use of a player's feet or head, with no other body parts permitted. When attempting a FIFA play, the die may not be caught by the player who last kicked it; it must be caught by their teammate. Players must alternate between kicks for multi-kick FIFA plays.</p>
+        <p>By engaging in a FIFA play and kicking the die, the defensive player shall maintain the die's status as a live play. All subsequent actions of the die should be treated as if it was normally thrown, except in the following circumstances.</p>
+        <ol>
+            <li>If a FIFA'd die lands on the table and stays on the table, one point shall be awarded to the offensive team.</li>
+            <li>If a FIFA'd die lands on the table and subsequently falls off the table without being caught, one point shall be awarded to the offensive team.</li>
+        </ol>
+
+        <h2>7. Four's Rule</h2>
+        <p>The Four's rule shall be triggered when a tossed die lands dead on the table with the number "4" facing up after bouncing off the defending team's half of the table. In this situation, both teams shall finish their respective drinks and then engage in a round of flip cup using their same cups. The team that successfully flips their cups first shall be awarded one point.</p>
+
+        <p>The Four's rule shall be active at designated days and times. From Sunday to Friday, Four's shall be considered live after 4 pm. On Saturdays, Four's shall be live after 4 am.</p>
+
+        <h2>8. Additional Rules and Regulations</h2>
+        <ul>
+            <li>Die Back: In the event that both players on the offensive team score points through their individual tosses (without the involvement of FIFA or Four's plays), the defensive team shall roll the die. If the offensive team correctly calls the resulting number, they shall regain possession of the die for additional tosses.</li>
+            <li>Picks: If agreed upon by both teams, players are allowed to set a pick at the cup locations on their side of the table (not at the mid-line). Players are prohibited from shouldering into or moving the defensive player in any manner. Engaging in such contact will result in the nullification of any points scored on that play.</li>
+            <li>Roll a Sink: If both teams consent to the Roll a Sink rule, then following a sink play, the player whose cup was sunk shall either swallow and spit a die out onto the table or simply roll it from within the cup. If the chosen player successfully spits or rolls the same number as the player who executed the sink, they shall regain possession of the die.</li>
+            <li>Naked Lap: In the event of a skunk (an 11-0 score), the losing team shall be required to either run a naked lap around the house or purchase a pizza for the winning team.</li>
+            <li>Call Mommy: If a player sinks their own cup, they must call their mother and inquire, "Can I keep playing?" If a player sinks their partner's cup, they must call their partner's mother and pose the same question. Should the mother in question forbid the player from continuing, they must comply and sit out for the remainder of the game, leaving their partner to finish on their own.</li>
+        </ul>
+
+        <h2>9. Dealing with Uncommon Circumstances</h2>
+        <ul>
+            <li>Bounce out sink and caught: In the event that a die is tossed into a plastic cup, bounces out, and is then caught by a defensive player, the catch shall only be considered valid if the die remains off the table throughout the play.</li>
+            <li>Bounce on tossing team's side but sinks the defending team's cup: No points shall be awarded, but the player whose cup was sunk must finish their drink.</li>
+            <li>Bounce on tossing team's side but sinks offensive team's cup: This scenario shall be treated as a self-sink.</li>
+            <li>Bounce on defensive team's side but sinks offensive team's cup: No points shall be awarded, but the player whose cup was sunk must finish their drink.</li>
+            <li>Interference by a non-player: If a non-player interferes with a live die or disrupts a player's toss, the play shall be considered void, and a re-toss shall be conducted. If the interference is deemed intentional, a point may be awarded to the offended team at their discretion.</li>
+            <li>Double bobbles: If a tossed die is bobbled multiple times among players of the same team without touching the table and caught before it hits the ground, then no point shall be awarded, and it’s a legal catch.</li>
+            <li>Juggling attempt: If a defensive player tries to juggle a die back into play after catching it, any additional contacts with the die (such as using other body parts like elbows or knees) shall be deemed legal.</li>
+            <li>Broken Cup: If a player's cup is damaged during gameplay, such as by being knocked over or punctured, play must pause momentarily to replace the cup and refill it with the corresponding amount of beer. The game then resumes as normal.</li>
+        </ul>
+
+        <h2>9. Dealing with Very Uncommon Circumstances</h2>
+        <ul>
+            <li>Simultaneous contact with two cups: If a tossed die simultaneously makes contact with both the defensive team's cups before falling off the table without being caught, the play shall be deemed a double tink, awarding three points to the offensive team.</li>
+            <li>Tossed die landing on top of the cup: In the rare event that a tossed die comes to rest on top of the defensive team's cup without falling into the cup or off the table, the play shall be declared dead, with no points awarded.</li>
+            <li>Bounce on defensive team's side and simultaneous catch: If a tossed die lands on the defensive team's side of the table, and both defensive players catch it at the same time without violations, the catch shall be considered legal, with no points awarded to the offensive team.</li>
+            <li>Tossed Die splits or breaks: In the exceptional circumstance where the die breaks, splits, or becomes otherwise unusable during gameplay (for example, if it chips upon impact with the ground), the game will pause momentarily for the damaged die to be replaced with a suitable substitute. Players should then consensus on the validity of the ceased throw and continue play accordingly, presuming the recovery of valid possession。</li>
+            <li>Multiple height calls: In the event of a team constantly calling height violations, both teams may agree upon allowing an unbiased observer to call any further height violations during the game.</li>
+            <li>External object impact: If a tossed die makes contact with an external object (e.g., a ceiling fan, tree, poster, or a person walking by) and then returns to the table or an opposing player's half, it shall be considered a live ball until touched by a player, rendering the play either dead or live based on the situation.</li>
+            <li>Wind interference: In an outdoor setting, if the wind significantly affects the trajectory or height of a toss, the impacted team may call for a re-toss. This decision must be made unanimously between all players.</li>
+            <li>Table Collapse: In the unlikely event of a table collapse or significant table damage, gameplay shall pause for repairs. If the issue cannot be resolved in a reasonable time frame, the game shall conclude with no awarded victor, unless both teams reach a consensus on the current state of play.</li>
+            <li>Tossed Died lands on a Defensive Player's Body Part: If a die bounces off the defensive team's half of the table and comes to rest on a defensive player's body part (i.e., shoulder) without falling to the ground or being caught, the catch shall be considered legal, with no points awarded to the offensive team, provided that all other playing rules have been followed.</li>
+            <li>Player falls or gets injured during gameplay: If a player falls while trying to catch a tossed die or sustains mild injuries during gameplay (such as cuts or spills), the game should be paused to reestablish security and ensure all players are safe. If players choose to continue with the game, points from the play can be given according to the outcome (catch or dropped die). Serious injuries would lead to discontinuation of the game. </li>
+            <li>Animal interference: If there is animal interference of a live toss or play such as a dog or a bird interferes with the toss/catch, all players shall agree to perform a re-toss without changing points or possession.</li>
+            <li>Tossed die landing in another player's drink (passers-by/non-players): In the unlikely event of a die ending up in a drink being held by a non-player or passer-by, play shall be considered dead and a re-toss shall be conducted, however the tossing player must give the non-player or passer-by a new drink.</li>
+            <li>Sudden weather changes: In an unlikely event where sudden weather changes, heavy rain, heavy winds noticeably influence gameplay more than reasonably anticipated by players at commencing games, both teams can take a temporary break from play immediately, and until conditions assert routine behavior.</li>
+            <li>Player unintentionally moves the table: If a player accidentally moves or shifts the table during gameplay, which affects a toss or catch, both teams must agree to either accept the outcome of the play or to perform a re-toss without changing points or possession.</li>
+            <li>Die rolls off adjacent surface: If a die is tossed and lands, for example, on a nearby ledge before returning to the table within the defensive team's half, it shall be declared dead and possession will transfer to the defending team. If there are disputes over whether the track followed by the die compromises the liveliness of the play, a re-toss may be held.</li>
+        </ul>
+
+        <a class="btn btn-secondary mt-3" href="{{ url_for('home') }}">Back to Home</a>
+    </div>
+
+    <!-- Bootstrap Javascripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
