@@ -27,7 +27,8 @@ def save_game_data_to_firebase(team1_player1, team1_player2, team2_player1, team
         'team2_score' : team2_score,
         'timestamp': datetime.now()
     }
-    db.collection('games').add(game_data)
+    # Create a new document with a unique ID and set its data
+    db.collection('games').document().set(game_data)
 
 
 def fetch_individual_rankings_from_firebase():
@@ -264,4 +265,4 @@ def da_rules():
     return render_template('da_rules.html')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0', port=5000, use_reloader=False)

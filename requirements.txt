@@ -1,5 +1,5 @@
-flask
+flask==2.3.1
 firebase
 firebase.admin
-gunicorn
+gunicorn==20.0.4
 pytz
