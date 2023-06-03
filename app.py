@@ -5,7 +5,9 @@ from tracking import Tracking
 from game import Game
 from datetime import datetime
 from scheduling import generate_schedule_for_players
+import time
 import pytz
+import random
 
 tracking = Tracking()
 
@@ -28,7 +30,7 @@ def save_game_data_to_firebase(team1_player1, team1_player2, team2_player1, team
         'timestamp': datetime.now()
     }
     # Create a new document with a unique ID and set its data
-    db.collection('games').document().set(game_data)
+    db.collection('games').document(f"{time.time()}_{random.randint(1000,9999)}").set(game_data)
 
 
 def fetch_individual_rankings_from_firebase():
