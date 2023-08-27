@@ -4,7 +4,7 @@ from player import Player
 from team import Team
 from game import Game
 
-LOOP_NUMBER = 30
+LOOP_NUMBER = 50
 
 class Tracking:
     def __init__(self, filename = None):
@@ -168,11 +168,11 @@ class Tracking:
 
         # Set the base rewards
         win_reward = 10/LOOP_NUMBER
-        play_reward = (win_reward/6)
+        play_reward = (win_reward/5)
 
         # Set multipliers
-        rating_diff_multiplier = (win_reward/100)
-        point_diff_multiplier = (win_reward/20)
+        rating_diff_multiplier = (win_reward/500)
+        point_diff_multiplier = (win_reward/100)
 
         # Calculate the point difference between the winner and the loser
         point_diff = game.point_difference()
@@ -198,12 +198,12 @@ class Tracking:
         # Update the team Elo ratings for the winner and the loser
         winner.update_elo(rating_change + play_reward)
         winner.penalty = 0.0
-        if winner.games <= Q1: winner.penalty = winner.elo
+        if winner.games < Q1: winner.penalty = winner.elo
         
 
         loser.update_elo(-rating_change + play_reward)
         loser.penalty = 0.0
-        if loser.games <= Q1: loser.penalty = loser.elo
+        if loser.games < Q1: loser.penalty = loser.elo
       
 
     def update_player_elo(self, winner, loser, rating_change, play_reward):
@@ -214,12 +214,12 @@ class Tracking:
         for winning_player in [winner.player1, winner.player2]:
             winning_player.update_elo(rating_change + play_reward)
             winning_player.penalty = 0.0
-            if winning_player.games <= Q1: winning_player.penalty = winning_player.elo
+            if winning_player.games < Q1: winning_player.penalty = winning_player.elo
 
         for losing_player in [loser.player1, loser.player2]:
             losing_player.update_elo(-rating_change + play_reward)
             losing_player.penalty = 0.0
-            if losing_player.games <= Q1: losing_player.penalty = losing_player.elo
+            if losing_player.games < Q1: losing_player.penalty = losing_player.elo
         
 
     def get_player(self, name):

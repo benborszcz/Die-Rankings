@@ -30,7 +30,7 @@ def save_game_data_to_firebase(team1_player1, team1_player2, team2_player1, team
         'timestamp': datetime.now()
     }
     # Create a new document with a unique ID and set its data
-    db.collection('games').document(f"{time.time()}_{random.randint(1000,9999)}").set(game_data)
+    db.collection('games2').document(f"{time.time()}_{random.randint(1000,9999)}").set(game_data)
 
 
 def fetch_individual_rankings_from_firebase():
@@ -57,14 +57,14 @@ def fetch_team_rankings_from_tracking():
 
 def fetch_game_history_from_firebase():
     # Fetch game history from Firebase
-    game_docs = db.collection('games').stream()
+    game_docs = db.collection('games2').stream()
     games = [{'id': doc.id, **doc.to_dict()} for doc in game_docs]
     return games
 
 
 def fetch_game_from_firebase(game_id):
     # Fetch a single game from Firebase
-    game_doc = db.collection('games').document(game_id).get()
+    game_doc = db.collection('games2').document(game_id).get()
     game = {'id': game_doc.id, **game_doc.to_dict()}
     return game
 
@@ -79,12 +79,12 @@ def update_game_data_in_firebase(game_id, team1_player1, team1_player2, team2_pl
         'team1_score' : team1_score,
         'team2_score' : team2_score
     }
-    db.collection('games').document(game_id).update(game_data)
+    db.collection('games2').document(game_id).update(game_data)
 
 
 def delete_game_from_firebase(game_id):
     # Delete a game from Firebase
-    db.collection('games').document(game_id).delete()
+    db.collection('games2').document(game_id).delete()
 
 @app.route('/')
 def home():
@@ -267,4 +267,4 @@ def da_rules():
     return render_template('da_rules.html')
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000, use_reloader=False)
+    app.run(debug=True, host='0.0.0.0', port=5000)

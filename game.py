@@ -10,7 +10,7 @@ class Game:
         self.etz_timestamp = None
 
     def point_difference(self):
-        return self.score[0] - self.score[1]
+        return abs(self.score[0] - self.score[1])
 
     def save_data(self):
         with open("games.txt", 'a') as f:
