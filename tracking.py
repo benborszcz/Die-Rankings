@@ -11,6 +11,7 @@ class Tracking:
         self.filename = filename
         self.players = []
         self.teams = []
+        self.games = []
 
     def load_data(self, game_history):
 
@@ -96,7 +97,7 @@ class Tracking:
                 for game in game_order:
                     self.update_data_elo_strict(game)
 
-        
+        self.games = games
 
 
 
@@ -171,7 +172,7 @@ class Tracking:
         play_reward = (win_reward/5)
 
         # Set multipliers
-        rating_diff_multiplier = (win_reward/500)
+        rating_diff_multiplier = (win_reward/250)
         point_diff_multiplier = (win_reward/100)
 
         # Calculate the point difference between the winner and the loser

@@ -11,6 +11,9 @@ class Game:
 
     def point_difference(self):
         return abs(self.score[0] - self.score[1])
+    
+    def to_string(self):
+        return (f"{self.team1.player1.name}-{self.team1.player2.name} ({self.score[0]}) vs ({self.score[1]}) {self.team2.player1.name}-{self.team2.player2.name}")
 
     def save_data(self):
         with open("games.txt", 'a') as f:

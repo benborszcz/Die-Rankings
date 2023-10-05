@@ -8,6 +8,7 @@ from scheduling import generate_schedule_for_players
 import time
 import pytz
 import random
+import stats
 
 tracking = Tracking()
 
@@ -223,7 +224,12 @@ def game_history():
     for game in games:
         game.est_timestamp = game.timestamp.astimezone(est_tz)
 
-    return render_template('game_history.html', games=games, players=players, player_filter=player_filter)
+    stat = stats.StatGenerator(tracking.players, tracking.teams, tracking.games)
+    overall_stats = stat.generate_overall_stats()
+    if player_filter:
+        overall_stats = stat.generate_player_stats(player_filter)
+
+    return render_template('game_history.html', games=games, players=players, player_filter=player_filter, overall_stats=overall_stats)
 
 
 @app.route('/edit_game/<game_id>', methods=['GET', 'POST'])
@@ -268,3 +274,4 @@ def da_rules():
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
+    
